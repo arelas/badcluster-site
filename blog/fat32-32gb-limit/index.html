@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Windows Won't Format a Big Drive as FAT32 - Bad Cluster</title>
+<meta name="description" content="The 32 GB limit isn't a FAT32 limit. It's a Windows limit. Here's the difference, and what we did about it.">
+<link rel="canonical" href="https://badcluster.dev/blog/fat32-32gb-limit/">
+<link rel="icon" href="/assets/phat32-icon.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="wordmark" href="/"><span class="dot" aria-hidden="true"></span>BAD CLUSTER</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav">MENU</button>
+    <nav class="nav" id="primaryNav">
+      <div class="nav-links">
+        <a class="nav-link" href="/#projects">PROJECTS</a>
+        <a class="nav-link is-active" href="/blog/">BLOG</a>
+        <a class="nav-link" href="/contact/">CONTACT</a>
+      </div>
+      <div class="nav-divider" aria-hidden="true"></div>
+      <a class="nav-link" href="https://github.com/arelas" target="_blank" rel="noopener">GITHUB &#8599;</a>
+    </nav>
+  </div>
+</header>
+<script>
+  document.getElementById('navToggle').addEventListener('click', function () {
+    var nav = document.getElementById('primaryNav');
+    var open = nav.classList.toggle('is-open');
+    this.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+</script>
+<main>
+
+<article class="wrap-narrow">
+  <div class="post-header">
+    <a class="back-link" href="/blog/">&larr; Back to blog</a>
+    <p class="post-meta">June 29, 2026</p>
+    <h1 class="post-title">Why Windows Won't Format a Big Drive as FAT32</h1>
+  </div>
+  <div class="post-body">
+<p>Try to format a 64&nbsp;GB USB drive as FAT32 in Windows - Disk Management,
+<code>format.com</code>, the right-click menu, doesn't matter - and Windows refuses.
+FAT32 itself doesn't have that problem. With 512-byte sectors, the format
+supports volumes up to roughly 2&nbsp;TB. The 32&nbsp;GB wall is a decision
+Microsoft made in their own formatter, not a constraint of the file
+format.</p>
+<p>Why it still matters: a lot of cameras, game consoles, car stereos, and
+smart TVs only understand FAT32. Not exFAT, not NTFS. If you've got a
+64&nbsp;GB card for one of those devices, Windows' built-in tools simply
+won't get you there.</p>
+<h2>What's actually involved</h2>
+<p>A FAT32 volume needs, in order:</p>
+<ul>
+<li>A <strong>boot sector</strong> describing the volume (sectors per cluster, FAT size,
+  total sectors, where the root directory lives)</li>
+<li>An <strong>FSInfo sector</strong> with free-cluster bookkeeping</li>
+<li>A <strong>backup boot sector</strong></li>
+<li>Two copies of the <strong>FAT</strong> itself (the table that tracks which clusters
+  belong to which file)</li>
+<li>A <strong>root directory</strong>, which for FAT32 is just the first cluster of the
+  data area</li>
+</ul>
+<p>None of that is large or complicated. The reserved area is typically 32
+sectors. Even the FAT tables, sized to the drive, are a small fraction of
+total capacity. The actual data area - the part Windows' formatter is
+supposedly protecting you from - is untouched by any of this. Quick
+format never even looks at it.</p>
+<h2>So we wrote it ourselves</h2>
+<p><a href="/#projects">PHAT32</a> builds these structures directly: the same sizing
+formulas Windows itself uses internally (cluster size tables, the FAT-size
+calculation from Microsoft's own FAT32 spec), just without the artificial
+size check. It locks the volume, writes the boot sector and FAT tables,
+and - this part matters - reads everything back afterward to confirm it
+landed correctly, rather than assuming a write succeeded just because the
+API call didn't return an error.</p>
+<p>There's also a full-format option that scans every data cluster for bad
+sectors and marks any it finds, the same way a real formatter would.
+Quick format is still the default, since most people formatting a healthy
+USB drive don't need to wait for a full surface scan.</p>
+<p>It's <a href="https://github.com/arelas/Phat32">on GitHub</a> if you want to see how
+it's built, or just want the tool.</p>
+  </div>
+</article>
+
+</main>
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="wordmark" href="/"><span class="dot" aria-hidden="true"></span>BAD CLUSTER</a>
+      <p class="footer-tagline">A disk doesn't lie about which sectors are bad. We'd like our software to be just as honest.</p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-head">SITE</p>
+      <a href="/#projects">Projects</a>
+      <a href="/blog/">Blog</a>
+      <a href="/contact/">Contact</a>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-head">ELSEWHERE</p>
+      <a href="https://github.com/arelas" target="_blank" rel="noopener">GitHub &#8599;</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>&copy; 2026 BAD CLUSTER</span>
+    <span class="footer-marker">0x00000000 // EOF</span>
+  </div>
+</footer>
+</body>
+</html>

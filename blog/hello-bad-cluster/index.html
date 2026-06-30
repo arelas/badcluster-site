@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hello, Bad Cluster - Bad Cluster</title>
+<meta name="description" content="Why we picked this name, and what this site is actually for.">
+<link rel="canonical" href="https://badcluster.dev/blog/hello-bad-cluster/">
+<link rel="icon" href="/assets/phat32-icon.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="wordmark" href="/"><span class="dot" aria-hidden="true"></span>BAD CLUSTER</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav">MENU</button>
+    <nav class="nav" id="primaryNav">
+      <div class="nav-links">
+        <a class="nav-link" href="/#projects">PROJECTS</a>
+        <a class="nav-link is-active" href="/blog/">BLOG</a>
+        <a class="nav-link" href="/contact/">CONTACT</a>
+      </div>
+      <div class="nav-divider" aria-hidden="true"></div>
+      <a class="nav-link" href="https://github.com/arelas" target="_blank" rel="noopener">GITHUB &#8599;</a>
+    </nav>
+  </div>
+</header>
+<script>
+  document.getElementById('navToggle').addEventListener('click', function () {
+    var nav = document.getElementById('primaryNav');
+    var open = nav.classList.toggle('is-open');
+    this.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+</script>
+<main>
+
+<article class="wrap-narrow">
+  <div class="post-header">
+    <a class="back-link" href="/blog/">&larr; Back to blog</a>
+    <p class="post-meta">June 29, 2026</p>
+    <h1 class="post-title">Hello, Bad Cluster</h1>
+  </div>
+  <div class="post-body">
+<p>A FAT32 filesystem keeps a table of every cluster on a disk. Most entries
+just point to the next cluster in a file, or mark one as free. A small
+number get a special value instead: <code>0x0FFFFFF7</code>. That one means <em>bad
+cluster</em> - hardware found this spot unreliable, so don't use it. The
+filesystem doesn't pretend the cluster works. It just marks it and moves
+on.</p>
+<p>That's the whole reason for the name. We'd rather ship something small and
+honestly-labeled than something polished that quietly hides where it
+doesn't work.</p>
+<h2>What this site is</h2>
+<p>A place to put things we build that we think are worth sharing. Right now
+that's <a href="/#projects">PHAT32</a>, a Windows tool for formatting drives as FAT32
+past the 32&nbsp;GB limit Windows' own formatter won't let you cross. It
+won't always be tools, and it won't always be Windows-specific - whatever
+we end up making, if it's useful enough to hand to someone else, it ends
+up here.</p>
+<h2>What this blog is</h2>
+<p>Notes on what we're actually building, written close to when we build it.
+Not a marketing calendar - if there's nothing worth writing about in a
+given month, there won't be a post that month.</p>
+<p>If you want to reach us about any of it, there's a <a href="/contact/">contact
+form</a> for that.</p>
+  </div>
+</article>
+
+</main>
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="wordmark" href="/"><span class="dot" aria-hidden="true"></span>BAD CLUSTER</a>
+      <p class="footer-tagline">A disk doesn't lie about which sectors are bad. We'd like our software to be just as honest.</p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-head">SITE</p>
+      <a href="/#projects">Projects</a>
+      <a href="/blog/">Blog</a>
+      <a href="/contact/">Contact</a>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-head">ELSEWHERE</p>
+      <a href="https://github.com/arelas" target="_blank" rel="noopener">GitHub &#8599;</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>&copy; 2026 BAD CLUSTER</span>
+    <span class="footer-marker">0x00000000 // EOF</span>
+  </div>
+</footer>
+</body>
+</html>

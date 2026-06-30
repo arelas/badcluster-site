@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - Bad Cluster</title>
+<meta name="description" content="Get in touch with Bad Cluster.">
+<link rel="canonical" href="https://badcluster.dev/contact/">
+<link rel="icon" href="/assets/phat32-icon.png">
+<link rel="stylesheet" href="/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <a class="wordmark" href="/"><span class="dot" aria-hidden="true"></span>BAD CLUSTER</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav">MENU</button>
+    <nav class="nav" id="primaryNav">
+      <div class="nav-links">
+        <a class="nav-link" href="/#projects">PROJECTS</a>
+        <a class="nav-link" href="/blog/">BLOG</a>
+        <a class="nav-link is-active" href="/contact/">CONTACT</a>
+      </div>
+      <div class="nav-divider" aria-hidden="true"></div>
+      <a class="nav-link" href="https://github.com/arelas" target="_blank" rel="noopener">GITHUB &#8599;</a>
+    </nav>
+  </div>
+</header>
+<script>
+  document.getElementById('navToggle').addEventListener('click', function () {
+    var nav = document.getElementById('primaryNav');
+    var open = nav.classList.toggle('is-open');
+    this.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+</script>
+<main>
+
+<section class="page-hero wrap">
+  <p class="eyebrow">0x00000001 &nbsp;//&nbsp; OPEN CHANNEL</p>
+  <h1>Get in touch</h1>
+  <p class="hero-sub">Question, bug report, idea, or just want to say hello - this goes straight to us.</p>
+</section>
+<section class="form-block wrap">
+  <form class="contact-form" id="contactForm" action="https://formspree.io/f/mzdlaayv" method="POST">
+    <div class="field">
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" placeholder="Your name" required>
+    </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" placeholder="you@example.com" required>
+    </div>
+    <div class="field">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" placeholder="What's on your mind?" required></textarea>
+    </div>
+    <button class="btn-submit" type="submit" id="contactSubmit">Send message</button>
+    <p class="form-note" id="contactNote">Sent via Formspree. We don't store this anywhere ourselves.</p>
+  </form>
+  <div class="form-success" id="contactSuccess" hidden>
+    Message sent. We'll get back to you soon.
+  </div>
+</section>
+<script>
+  (function () {
+    var form = document.getElementById('contactForm');
+    var button = document.getElementById('contactSubmit');
+    var note = document.getElementById('contactNote');
+    var success = document.getElementById('contactSuccess');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      button.disabled = true;
+      button.textContent = 'Sending...';
+      note.textContent = '';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          form.hidden = true;
+          success.hidden = false;
+        } else {
+          response.json().then(function (data) {
+            var msg = (data && data.errors && data.errors.length)
+              ? data.errors.map(function (er) { return er.message; }).join(', ')
+              : 'Something went wrong. Please try again.';
+            note.textContent = msg;
+            note.style.color = 'var(--accent-copper)';
+            button.disabled = false;
+            button.textContent = 'Send message';
+          });
+        }
+      }).catch(function () {
+        note.textContent = 'Something went wrong. Please check your connection and try again.';
+        note.style.color = 'var(--accent-copper)';
+        button.disabled = false;
+        button.textContent = 'Send message';
+      });
+    });
+  })();
+</script>
+
+</main>
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="wordmark" href="/"><span class="dot" aria-hidden="true"></span>BAD CLUSTER</a>
+      <p class="footer-tagline">A disk doesn't lie about which sectors are bad. We'd like our software to be just as honest.</p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-head">SITE</p>
+      <a href="/#projects">Projects</a>
+      <a href="/blog/">Blog</a>
+      <a href="/contact/">Contact</a>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-head">ELSEWHERE</p>
+      <a href="https://github.com/arelas" target="_blank" rel="noopener">GitHub &#8599;</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>&copy; 2026 BAD CLUSTER</span>
+    <span class="footer-marker">0x00000000 // EOF</span>
+  </div>
+</footer>
+</body>
+</html>
