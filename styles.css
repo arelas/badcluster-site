@@ -280,8 +280,13 @@ h1 .dim { color: var(--ink-dim); }
 /* ---- Section shared ---------------------------------------------------- */
 
 section.block {
-  padding: 64px 0;
+  padding: 0 0 64px;
+}
+
+section.block > .wrap,
+section.block > .wrap-narrow {
   border-top: 1px solid var(--line);
+  padding-top: 64px;
 }
 
 .section-head {
