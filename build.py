@@ -217,12 +217,12 @@ def build_blog_index(posts):
         list_html = '<p class="empty-blog">[ cluster free ] Nothing posted yet.</p>'
 
     body = f"""
-<section class="page-hero wrap-narrow">
+<section class="page-hero wrap">
   <p class="eyebrow">0xFFFFFFFE &nbsp;//&nbsp; LOG</p>
   <h1>Blog</h1>
   <p class="hero-sub">Notes on what we're building and why, written as it happens.</p>
 </section>
-<section class="block wrap-narrow">
+<section class="block wrap">
   {list_html}
 </section>
 """
