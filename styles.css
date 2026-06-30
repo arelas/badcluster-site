@@ -148,7 +148,8 @@ header {
 /* ---- Hero (home) ------------------------------------------------------ */
 
 .hero {
-  padding: 96px 0 64px;
+  padding-top: 96px;
+  padding-bottom: 64px;
 }
 
 .eyebrow {
@@ -206,7 +207,8 @@ h1 .dim { color: var(--ink-dim); }
 /* ---- Page hero (blog / contact - smaller, no sector grid) ------------- */
 
 .page-hero {
-  padding: 64px 0 16px;
+  padding-top: 64px;
+  padding-bottom: 16px;
 }
 
 .page-hero h1 {
@@ -765,8 +767,8 @@ footer {
 /* ---- Mobile ------------------------------------------------------------------ */
 
 @media (max-width: 640px) {
-  .hero { padding: 64px 0 48px; }
-  .page-hero { padding: 48px 0 12px; }
+  .hero { padding-top: 64px; padding-bottom: 48px; }
+  .page-hero { padding-top: 48px; padding-bottom: 12px; }
   .sector-grid { grid-template-columns: repeat(16, 1fr); }
   .header-inner { padding: 16px 20px; }
   .wrap, .wrap-narrow { padding: 0 20px; }
