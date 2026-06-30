@@ -178,7 +178,7 @@ h1 {
   line-height: 1.22;
   letter-spacing: -0.01em;
   margin: 0 0 28px;
-  max-width: 14ch;
+  max-width: 22ch;
 }
 
 h1 .dim { color: var(--ink-dim); }

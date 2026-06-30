@@ -76,7 +76,7 @@ def render_footer():
   <div class="wrap footer-grid">
     <div class="footer-brand">
       <a class="wordmark" href="/"><span class="dot" aria-hidden="true"></span>{SITE_NAME.upper()}</a>
-      <p class="footer-tagline">A disk doesn't lie about which sectors are bad. We'd like our software to be just as honest.</p>
+      <p class="footer-tagline">We never grew out of taking things apart to see how they work.</p>
     </div>
     <div class="footer-col">
       <p class="footer-col-head">SITE</p>
@@ -332,8 +332,8 @@ def build_home(posts):
     body = """
 <section class="hero wrap">
   <p class="eyebrow">0x0FFFFFF7 &nbsp;//&nbsp; THE BAD_CLUSTER MARKER</p>
-  <h1>A disk doesn't lie about which sectors are bad.<span class="hero-cursor" aria-hidden="true"></span><br><span class="dim">We'd like our software to be just as honest.</span></h1>
-  <p class="hero-sub">Whatever we end up building &mdash; tools, sites, something else entirely &mdash; if we find it useful, we put it out into the world.</p>
+  <h1>We never grew out of taking things apart to see how they work.<span class="hero-cursor" aria-hidden="true"></span></h1>
+  <p class="hero-sub">Side projects that got out of hand, on purpose.</p>
 
   <div class="sector-grid" aria-hidden="true">
 """ + "\n".join(_sector_grid_cells()) + """
@@ -414,7 +414,7 @@ def build_home(posts):
 """ + blog_preview_section
     html = page_shell(
         title=SITE_NAME,
-        description="Whatever we build that turns out useful, we share with the world.",
+        description="Side projects that got out of hand, on purpose.",
         body_html=body,
         active="",
         canonical="/",
