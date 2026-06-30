@@ -97,11 +97,9 @@ header {
   gap: 10px;
 }
 
-.wordmark .dot {
-  width: 9px;
-  height: 9px;
-  background: var(--accent-copper);
-  display: inline-block;
+.wordmark .wordmark-icon {
+  width: 22px;
+  height: 22px;
   flex-shrink: 0;
 }
 

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1C2029"/>
+      <stop offset="1" stop-color="#0E1015"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="8" y="8" width="496" height="496" rx="108" fill="url(#bg)" stroke="#262B36" stroke-width="6"/>
+
+  <!-- 3x3 sector grid, one cell marked bad -->
+  <g>
+    <!-- row 1 -->
+    <rect x="146" y="146" width="68" height="68" rx="10" fill="#2A4D49"/>
+    <rect x="222" y="146" width="68" height="68" rx="10" fill="#2A4D49"/>
+    <rect x="298" y="146" width="68" height="68" rx="10" fill="#2A4D49"/>
+    <!-- row 2 -->
+    <rect x="146" y="222" width="68" height="68" rx="10" fill="#2A4D49"/>
+    <rect x="222" y="222" width="68" height="68" rx="10" fill="#2A4D49"/>
+    <rect x="298" y="222" width="68" height="68" rx="10" fill="#D98E3E"/>
+    <!-- row 3 -->
+    <rect x="146" y="298" width="68" height="68" rx="10" fill="#2A4D49"/>
+    <rect x="222" y="298" width="68" height="68" rx="10" fill="#2A4D49"/>
+    <rect x="298" y="298" width="68" height="68" rx="10" fill="#2A4D49"/>
+  </g>
+</svg>

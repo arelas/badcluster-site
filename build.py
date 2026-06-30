@@ -39,6 +39,22 @@ GITHUB_URL = "https://github.com/arelas"
 FORM_ACTION = "https://formspree.io/f/mzdlaayv"
 
 
+# Inline SVG mark (3x3 sector grid, one cell flagged bad) used in the
+# header/footer wordmark - kept inline rather than an <img> so it's crisp
+# at any size with no extra request.
+WORDMARK_ICON_SVG = """<svg class="wordmark-icon" viewBox="0 0 110 110" aria-hidden="true">
+  <rect x="0" y="0" width="34" height="34" rx="6" fill="#2A4D49"/>
+  <rect x="38" y="0" width="34" height="34" rx="6" fill="#2A4D49"/>
+  <rect x="76" y="0" width="34" height="34" rx="6" fill="#2A4D49"/>
+  <rect x="0" y="38" width="34" height="34" rx="6" fill="#2A4D49"/>
+  <rect x="38" y="38" width="34" height="34" rx="6" fill="#2A4D49"/>
+  <rect x="76" y="38" width="34" height="34" rx="6" fill="#D98E3E"/>
+  <rect x="0" y="76" width="34" height="34" rx="6" fill="#2A4D49"/>
+  <rect x="38" y="76" width="34" height="34" rx="6" fill="#2A4D49"/>
+  <rect x="76" y="76" width="34" height="34" rx="6" fill="#2A4D49"/>
+</svg>"""
+
+
 # ---- Shared page chrome ----------------------------------------------------
 
 def render_header(active=""):
@@ -48,7 +64,7 @@ def render_header(active=""):
 
     return f"""<header>
   <div class="header-inner">
-    <a class="wordmark" href="/"><span class="dot" aria-hidden="true"></span>{SITE_NAME.upper()}</a>
+    <a class="wordmark" href="/">{WORDMARK_ICON_SVG}{SITE_NAME.upper()}</a>
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav">MENU</button>
     <nav class="nav" id="primaryNav">
       <div class="nav-links">
@@ -75,7 +91,7 @@ def render_footer():
     return f"""<footer>
   <div class="wrap footer-grid">
     <div class="footer-brand">
-      <a class="wordmark" href="/"><span class="dot" aria-hidden="true"></span>{SITE_NAME.upper()}</a>
+      <a class="wordmark" href="/">{WORDMARK_ICON_SVG}{SITE_NAME.upper()}</a>
       <p class="footer-tagline">We never grew out of taking things apart to see how they work.</p>
     </div>
     <div class="footer-col">
@@ -106,7 +122,8 @@ def page_shell(title, description, body_html, active="", canonical=""):
 <title>{title}</title>
 <meta name="description" content="{description}">
 {canonical_tag}
-<link rel="icon" href="/assets/phat32-icon.png">
+<link rel="icon" href="/assets/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/logo/apple-touch-icon-512.png">
 <link rel="stylesheet" href="/styles.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
