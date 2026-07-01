@@ -608,7 +608,8 @@ section.block {
 /* ---- Contact form --------------------------------------------------------- */
 
 .form-block {
-  padding: 16px 0 80px;
+  padding-top: 16px;
+  padding-bottom: 80px;
 }
 
 form.contact-form[hidden] {
@@ -751,7 +752,8 @@ footer {
   font-size: 0.74rem;
   color: var(--ink-faint);
   border-top: 1px solid var(--line);
-  padding: 20px 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 /* ---- Reduced motion ---------------------------------------------------------- */
